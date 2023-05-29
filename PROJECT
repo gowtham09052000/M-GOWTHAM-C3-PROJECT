@@ -1,0 +1,74 @@
+Part 2: Solution
+import java.util.HashMap;
+import java.util.Map;
+
+public class OrderCalculator {
+
+    private static final Map<String, Double> MENU_PRICES;
+
+    static {
+        MENU_PRICES = new HashMap<>();
+        MENU_PRICES.put("Item1", 10.0);
+        MENU_PRICES.put("Item2", 8.0);
+        MENU_PRICES.put("Item3", 7.0);
+        // Add more menu items and prices if needed
+    }
+
+    public double calculateOrderValue(String... itemNames) {
+        double orderValue = 0.0;
+        for (String itemName : itemNames) {
+            if (MENU_PRICES.containsKey(itemName)) {
+                orderValue += MENU_PRICES.get(itemName);
+            }
+        }
+        return orderValue;
+    }
+}
+
+
+Commit 2: Part 3: Failing test case
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class OrderCalculatorTest {
+
+    @Test
+    public void testGetOrderValueInUSD() {
+        OrderCalculator orderCalculator = new OrderCalculator();
+        double orderValueInUSD = orderCalculator.getOrderValueInUSD();
+        Assertions.assertEquals(0.0, orderValueInUSD);
+    }
+}
+
+
+Commit 3: Part 3: Solution
+import java.util.HashMap;
+import java.util.Map;
+
+public class OrderCalculator {
+
+    private static final Map<String, Double> MENU_PRICES;
+
+    static {
+        MENU_PRICES = new HashMap<>();
+        MENU_PRICES.put("Item1", 10.0);
+        MENU_PRICES.put("Item2", 8.0);
+        MENU_PRICES.put("Item3", 7.0);
+        // Add more menu items and prices if needed
+    }
+
+    public double calculateOrderValue(String... itemNames) {
+        double orderValue = 0.0;
+        for (String itemName : itemNames) {
+            if (MENU_PRICES.containsKey(itemName)) {
+                orderValue += MENU_PRICES.get(itemName);
+            }
+        }
+        return orderValue;
+    }
+
+    public double getOrderValueInUSD() {
+        // Assuming the order value is in USD
+        return calculateOrderValue();
+    }
+}
